@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const Product = () => {
   const [count, setCount] = useState(12345);
   const [like, setLike] = useState(12345);
-  const [todo, setTodo] = useState({ title: "" });
+  const [todo, setTodo] = useState([]);
 
   const handleCount = () => {
     setCount(count + 1);
@@ -16,7 +16,7 @@ const Product = () => {
   };
 
   const fetchTodo = () => {
-    fetch("https://jsonplaceholder.typicode.com/todos/1")
+    fetch("https://jsonplaceholder.typicode.com/todos")
       .then((response) => response.json())
       .then((data) => setTodo(data));
   };
@@ -25,6 +25,8 @@ const Product = () => {
     console.log("use effect");
     fetchTodo();
   }, []);
+
+  console.log("todo", todo);
 
   // [] dependency array
   // ini seperti watchlist, jika [] maka kita tidak memiliki watchlist dan hanya jalan 1 kali diawal
@@ -36,13 +38,22 @@ const Product = () => {
   return (
     <div>
       <h1>Product</h1>
-      <h1>counter {count}</h1>
+      {/* Bagimana mau merender array of object */}
+      <h1>Todos array of object</h1>
+      {todo.map((item, id) => (
+        <div key={id}>
+          <h1>{item.title}</h1>
+        </div>
+      ))}
+      {/* ini merender object */}
+      {/* <h1>Todos title: {todo.title}</h1> */}
+      {/* <h1>counter {count}</h1>
       <button onClick={handleCount}>+ biasa</button>
 
       <div>
         <h1>like {like}</h1>
         <button onClick={handleLike}>+ like</button>
-      </div>
+      </div> */}
     </div>
   );
 };
