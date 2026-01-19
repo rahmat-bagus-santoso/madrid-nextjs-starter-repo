@@ -1,5 +1,4 @@
 import MyComponent from "@/components/MyComponent";
-import Image from "next/image";
 
 export default function Home() {
   return (
