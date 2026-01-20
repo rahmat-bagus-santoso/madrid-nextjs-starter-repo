@@ -2,11 +2,31 @@
 // selama kita menggunakan cliet side rendering kita akan membutuhkan "use client"
 import { useEffect, useState } from "react";
 
-function Name() {
+// Cara #1
+// function Name({ instructor }: { instructor: string }) {
+
+// Cara #2
+// interface IProps {
+//   instructor: string;
+// }
+
+// function Name({ instructor }: IProps) {
+
+// Cara #3
+// interface IProps {
+//   instructor: string;
+// }
+
+// const Name: React.FC<IProps> = ({ instructor }) => {
+
+// pilih manapun tidak masalah, karena semua codingan TS akan di compile kembali menjadi JS
+function Name({ instructor }: any) {
   const [name, setName] = useState("");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
+
+  console.log("instructor", instructor);
 
   const [todo, setTodo] = useState<{
     userId: number;

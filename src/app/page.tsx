@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div>
         <h1>Next.js TS</h1>
-        <Name />
+        <Name instructor="Thoriq" />
         {/* <Counter /> */}
         {/* <MyComponent
           title="ini judul saya"

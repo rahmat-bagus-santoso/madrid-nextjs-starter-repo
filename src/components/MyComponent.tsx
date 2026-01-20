@@ -1,5 +1,7 @@
 import { Props } from "../types/type";
 
+// memastikan props yang dilempar dari parent component sudah type safety
+
 const MyComponent = ({ title }: { title: string }) => {
   const name: string = "nama saya Thoriq";
   const count: number = 22;
