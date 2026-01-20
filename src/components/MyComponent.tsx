@@ -1,10 +1,6 @@
-interface Props {
-  title: string;
-  subTitle: string;
-  image?: string | [];
-}
+import { Props } from "../types/type";
 
-const MyComponent: React.FC<Props> = ({ title }) => {
+const MyComponent = ({ title }: { title: string }) => {
   const name: string = "nama saya Thoriq";
   const count: number = 22;
   const isDarkMode: boolean = true;

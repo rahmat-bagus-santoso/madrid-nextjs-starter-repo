@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 function Name() {
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState("");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
