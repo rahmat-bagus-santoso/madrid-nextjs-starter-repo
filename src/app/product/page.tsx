@@ -8,8 +8,8 @@ function page() {
     formState: { errors },
   } = useForm();
 
-  const onSubmitForm = () => {
-    console.log("useForm");
+  const onSubmitForm = async (data: any) => {
+    console.log("useForm", data);
   };
   return (
     <div>
@@ -22,7 +22,10 @@ function page() {
 
         <input {...register("notes", { required: true })} placeholder="notes" />
         {errors.notes && <div>required input notes</div>}
-        {/* ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ */}
+        {/* regex pattern ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ */}
+        {/* /i adalah insensitive */}
+        {/* apa sih syarat sebuah email? */}
+        {/* a@a.a */}
         <input
           {...register("email", {
             required: true,
