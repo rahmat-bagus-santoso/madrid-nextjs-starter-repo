@@ -18,8 +18,15 @@ export default function ProductDemoPage() {
   // ===========================================
   // TODO 3: State
   // ===========================================
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Sample data for demo purposes
+  const MOCK_PRODUCTS: Product[] = [
+    { id: "1", createdAt: "2026-01-01", product: "Wireless Headphones", price: "149.99" },
+    { id: "2", createdAt: "2026-01-02", product: "Mechanical Keyboard", price: "189.00" },
+    { id: "3", createdAt: "2026-01-03", product: "4K Monitor", price: "449.99" },
+  ];
+
+  const [products, setProducts] = useState<Product[]>(MOCK_PRODUCTS);
+  const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -27,9 +34,11 @@ export default function ProductDemoPage() {
   // ===========================================
   // TODO 4: Fetch products on page load
   // ===========================================
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  // For demo: Using mock data, no API call needed
+  // Uncomment below to fetch from real API:
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
 
   const fetchProducts = async () => {
     try {
