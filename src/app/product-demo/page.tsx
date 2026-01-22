@@ -19,13 +19,13 @@ export default function ProductDemoPage() {
   // TODO 3: State
   // ===========================================
   // Sample data for demo purposes
-  const MOCK_PRODUCTS: Product[] = [
-    { id: "1", createdAt: "2026-01-01", product: "Wireless Headphones", price: "149.99" },
-    { id: "2", createdAt: "2026-01-02", product: "Mechanical Keyboard", price: "189.00" },
-    { id: "3", createdAt: "2026-01-03", product: "4K Monitor", price: "449.99" },
-  ];
+  // const MOCK_PRODUCTS: Product[] = [
+  //   { id: "1", createdAt: "2026-01-01", product: "Wireless Headphones", price: "149.99" },
+  //   { id: "2", createdAt: "2026-01-02", product: "Mechanical Keyboard", price: "189.00" },
+  //   { id: "3", createdAt: "2026-01-03", product: "4K Monitor", price: "449.99" },
+  // ];
 
-  const [products, setProducts] = useState<Product[]>(MOCK_PRODUCTS);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
@@ -36,9 +36,9 @@ export default function ProductDemoPage() {
   // ===========================================
   // For demo: Using mock data, no API call needed
   // Uncomment below to fetch from real API:
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   const fetchProducts = async () => {
     try {
@@ -80,7 +80,9 @@ export default function ProductDemoPage() {
     try {
       setSubmitting(true);
       const response = await axios.put(`${API_URL}/${editingProduct.id}`, data);
-      setProducts(products.map((p) => (p.id === editingProduct.id ? response.data : p)));
+      setProducts(
+        products.map((p) => (p.id === editingProduct.id ? response.data : p)),
+      );
       setShowForm(false);
       setEditingProduct(null);
       alert("Product updated successfully");
@@ -94,7 +96,8 @@ export default function ProductDemoPage() {
 
   // DELETE - remove product
   const deleteProduct = async (id: string) => {
-    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    if (!window.confirm("Are you sure you want to delete this product?"))
+      return;
 
     try {
       await axios.delete(`${API_URL}/${id}`);
@@ -132,7 +135,10 @@ export default function ProductDemoPage() {
   };
 
   // Calculate simple stats
-  const totalValue = products.reduce((sum, p) => sum + parseFloat(p.price || "0"), 0);
+  const totalValue = products.reduce(
+    (sum, p) => sum + parseFloat(p.price || "0"),
+    0,
+  );
 
   // ===========================================
   // Render
@@ -140,7 +146,6 @@ export default function ProductDemoPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-indigo-500/30">
       <div className="max-w-5xl mx-auto p-8">
-
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
           <div>
@@ -155,14 +160,21 @@ export default function ProductDemoPage() {
           {/* Stats Summary */}
           <div className="flex gap-6 bg-zinc-900/50 p-4 rounded-xl border border-zinc-800/50 backdrop-blur-sm">
             <div>
-              <p className="text-xs text-zinc-500 uppercase font-semibold tracking-wider">Total Products</p>
+              <p className="text-xs text-zinc-500 uppercase font-semibold tracking-wider">
+                Total Products
+              </p>
               <p className="text-xl font-bold text-white">{products.length}</p>
             </div>
             <div className="w-px bg-zinc-800"></div>
             <div>
-              <p className="text-xs text-zinc-500 uppercase font-semibold tracking-wider">Total Value</p>
+              <p className="text-xs text-zinc-500 uppercase font-semibold tracking-wider">
+                Total Value
+              </p>
               <p className="text-xl font-bold text-indigo-400">
-                ${totalValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                $
+                {totalValue.toLocaleString(undefined, {
+                  maximumFractionDigits: 0,
+                })}
               </p>
             </div>
           </div>
@@ -175,7 +187,21 @@ export default function ProductDemoPage() {
               onClick={handleAddNew}
               className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-lg font-medium transition-all shadow-lg shadow-indigo-900/20 hover:shadow-indigo-900/40 active:scale-95"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="16" /><line x1="8" y1="12" x2="16" y2="12" /></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="16" />
+                <line x1="8" y1="12" x2="16" y2="12" />
+              </svg>
               Add New Product
             </button>
           </div>
