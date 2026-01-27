@@ -13,7 +13,9 @@ import ProductList from "./ProductList";
 // TODO 2: API URL ✅
 // ===========================================
 // for testing api we can use thunder client / postman
-const API_URL = "https://64ca45bd700d50e3c7049e2f.mockapi.io/product";
+// const API_URL = "https://64ca45bd700d50e3c7049e2f.mockapi.io/product";
+const NEW_API_URL: any = process.env.NEXT_PUBLIC_API;
+console.log("new", NEW_API_URL);
 
 export default function ProductStarterPage() {
   // ===========================================
@@ -43,7 +45,7 @@ export default function ProductStarterPage() {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(API_URL);
+      const response = await axios.get(NEW_API_URL);
       setProducts(response.data);
       setLoading(false);
       setShowForm(false);
@@ -70,7 +72,7 @@ export default function ProductStarterPage() {
   const createProduct = async (data: FormData) => {
     try {
       setSubmitting(true);
-      const response = await axios.post(API_URL, data);
+      const response = await axios.post(NEW_API_URL, data);
       console.log("response", response.data);
       fetchProducts();
     } catch (error) {
@@ -92,7 +94,7 @@ export default function ProductStarterPage() {
     try {
       setSubmitting(true);
       const response = await axios.put(
-        `${API_URL}/${editingProduct?.id}`,
+        `${NEW_API_URL}/${editingProduct?.id}`,
         data,
       );
       console.log("response", response.data);
@@ -108,9 +110,21 @@ export default function ProductStarterPage() {
   // - Remove from array: setProducts(products.filter(p => p.id !== id))
 
   const deleteProduct = async (id: string) => {
-    if (!window.confirm("Are you sure want delete the data?")) return;
+    if (
+      !window.confirm(
+        "Are You Sure Delete the Data with ID = " +
+          id +
+          " and product name is ...?",
+      )
+    )
+      return;
+    const deleteAPI = NEW_API_URL + "/" + id;
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(deleteAPI);
+
+      fetch(`${NEW_API_URL}/${id}`, {
+        method: "DELETE",
+      });
       fetchProducts();
     } catch (error) {
       console.log("error", error);

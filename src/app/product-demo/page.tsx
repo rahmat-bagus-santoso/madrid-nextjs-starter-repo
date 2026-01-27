@@ -59,11 +59,13 @@ export default function ProductDemoPage() {
 
   // CREATE - add new product
   const createProduct = async (data: FormData) => {
+    console.log("data", data);
     try {
       setSubmitting(true);
       const response = await axios.post(API_URL, data);
-      setProducts([...products, response.data]);
+      setProducts(response.data);
       setShowForm(false);
+      fetchProducts();
       alert("Product added successfully");
     } catch (error) {
       console.error("Failed to create:", error);
@@ -112,6 +114,7 @@ export default function ProductDemoPage() {
   // Handlers
   // ===========================================
   const handleSubmit = (data: FormData) => {
+    console.log("handlesubmit", data);
     if (editingProduct) {
       updateProduct(data);
     } else {
