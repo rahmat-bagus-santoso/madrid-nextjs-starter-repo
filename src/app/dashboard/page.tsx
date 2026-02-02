@@ -7,6 +7,7 @@ import { getSession } from '@/lib/auth';
 
 export default async function DashboardPage() {
   const session = await getSession();
+  const isAdmin = session?.role === 'admin';
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-zinc-950 p-8 text-white">
@@ -22,12 +23,40 @@ export default async function DashboardPage() {
           </div>
         </div>
 
+        {/* Content Visible to Everyone (User & Admin) */}
         <div className="rounded-xl bg-zinc-900 p-6 ring-1 ring-white/10">
-          <h2 className="mb-4 text-xl font-semibold text-zinc-200">Protected Content</h2>
+          <h2 className="mb-4 text-xl font-semibold text-zinc-200">Public Dashboard Area</h2>
           <p className="text-zinc-400">
-            This page is protected by Middleware (Proxy). Only authenticated users can see this.
+            Welcome! This content is visible to all logged-in users.
           </p>
         </div>
+
+        {/* Content Visible ONLY to Admin */}
+        {isAdmin && (
+          <div className="rounded-xl bg-emerald-900/20 p-6 ring-1 ring-emerald-500/50">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500"></span>
+              <h2 className="text-xl font-semibold text-emerald-400">Admin Secret Area</h2>
+            </div>
+            <p className="text-emerald-200/80 mb-4">
+              This card is only visible because you are an <strong>Admin</strong>.
+            </p>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="rounded-lg bg-zinc-950/50 p-4">
+                <p className="text-xs text-zinc-500">Total Revenue</p>
+                <p className="text-2xl font-bold text-white">$1,234,567</p>
+              </div>
+              <div className="rounded-lg bg-zinc-950/50 p-4">
+                <p className="text-xs text-zinc-500">Active Users</p>
+                <p className="text-2xl font-bold text-white">8,942</p>
+              </div>
+              <div className="rounded-lg bg-zinc-950/50 p-4">
+                <p className="text-xs text-zinc-500">System Status</p>
+                <p className="text-lg font-bold text-emerald-400">Operational</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
