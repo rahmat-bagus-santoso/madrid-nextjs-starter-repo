@@ -8,16 +8,26 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { DemoImage } from '@/components/demo/DemoImage';
 
 export default function DemoPage() {
-  // useFetch Demo
+  /**
+   * INSTRUCTIONS:
+   * Follow the TODOs in the sequence:
+   * 1. Hook 1: useDebounce.ts (Easiest)
+   * 2. Hook 2: useMediaQuery.ts
+   * 3. Hook 3: useLocalStorage.ts
+   * 4. Hook 4: useFetch.ts (Medium/Hard)
+   * 5. Task 5: Next.js Performance (DemoImage.tsx & layout.tsx)
+   */
+
+  // TODO Hook 4: Implement useFetch to load these posts
   const { data: posts, loading, error } = useFetch<any[]>('https://jsonplaceholder.typicode.com/posts?_limit=3');
 
-  // useLocalStorage Demo
+  // TODO Hook 3: Implement useLocalStorage to persist this name
   const [name, setName] = useLocalStorage('demo-name', 'Guest');
 
-  // useMediaQuery Demo
+  // TODO Hook 2: Implement useMediaQuery to detect screen size
   const isMobile = useMediaQuery('(max-width: 768px)');
 
-  // useDebounce Demo
+  // TODO Hook 1: Implement useDebounce to optimize this search
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
@@ -31,6 +41,9 @@ export default function DemoPage() {
           <p className="mt-4 text-xl text-gray-500">
             Showcasing custom hooks, performance improvements, and Next.js features.
           </p>
+          <div className="mt-4 inline-block px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
+            Starter Code Mode: Implement the TODOs to see it in action!
+          </div>
         </header>
 
         {/* Next.js Font & Media Query */}
@@ -90,7 +103,7 @@ export default function DemoPage() {
         {/* Custom Hooks: useFetch */}
         <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Fetching (useFetch)</h2>
-          {loading && <div className="text-center py-4">Loading posts...</div>}
+          {loading && <div className="text-center py-4">Loading posts... (Waiting for your implementation)</div>}
           {error && <div className="text-red-500 text-center py-4">Error: {error.message}</div>}
           <div className="space-y-4">
             {posts?.map((post) => (
@@ -99,6 +112,9 @@ export default function DemoPage() {
                 <p className="text-gray-600 mt-1">{post.body.substring(0, 100)}...</p>
               </div>
             ))}
+            {!loading && !posts && (
+              <p className="text-center text-gray-500 italic">No data yet. Implement useFetch to see posts!</p>
+            )}
           </div>
         </section>
 

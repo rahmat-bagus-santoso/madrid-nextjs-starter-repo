@@ -12,10 +12,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
+// TODO Task 5: Add Inter font via next/font/google
+// 1. Import Inter from 'next/font/google'
+// 2. Initialize it with subsets: ["latin"] and a variable name.
+// 3. Add the font variable to the body className below.
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>

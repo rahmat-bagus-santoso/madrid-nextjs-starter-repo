@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 
+// TODO Hook 4: Implement the useFetch hook
+// This hook should fetch data from a URL and provide loading and error states.
+// Hint: Use async/await inside useEffect and handle errors with try/catch.
+
 export function useFetch<T>(url: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
@@ -7,19 +11,18 @@ export function useFetch<T>(url: string) {
 
   useEffect(() => {
     const fetchData = async () => {
+      // START TODO: Implement fetching logic with loading and error handling
+      setLoading(true);
       try {
-        setLoading(true);
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const result = await response.json();
-        setData(result);
+        // const response = await fetch(url);
+        // const result = await response.json();
+        // setData(result);
       } catch (err) {
-        setError(err as Error);
+        // setError(err as Error);
       } finally {
         setLoading(false);
       }
+      // END TODO
     };
 
     fetchData();
