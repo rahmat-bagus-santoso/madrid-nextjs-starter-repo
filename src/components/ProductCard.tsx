@@ -14,11 +14,11 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem);
   
-  // TODO: Exercise 8 - You can add local feedback state here if you want (like isAdded)
+  // TODO: Exercise 12 - Add local feedback state here (like 'isAdded') and trigger it in handleAdd
+  const isAdded = false;
 
   const handleAdd = () => {
-    // TODO: Exercise 3 - Call addItem here
-    // TODO: Exercise 8 - Trigger local feedback or global notification
+    // Logic moved to AddToCartButton or keep as wiring exercise
     addItem(product);
   };
 

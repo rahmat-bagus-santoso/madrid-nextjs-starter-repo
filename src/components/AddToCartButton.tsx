@@ -9,7 +9,7 @@ export function AddToCartButton({ product }: { product: Product }) {
   return (
     <button
       onClick={() => {
-        // TODO: Exercise 3 - Call addItem from the store
+        // TODO: Exercise 3 - Wire this button to call your store's addItem action
       }}
       className="w-full bg-white text-black py-4 rounded-xl hover:bg-zinc-200 transition-all font-bold flex items-center justify-center gap-3 shadow-lg shadow-white/5 active:scale-[0.98]"
     >

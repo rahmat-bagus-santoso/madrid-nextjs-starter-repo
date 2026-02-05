@@ -19,7 +19,7 @@ export function Navbar({ user }: { user: any }) {
   const debouncedSearch = useDebounce(searchTerm, 500);
 
   useEffect(() => {
-    // TODO: Exercise 6 - Implement debounced search logic
+    // TODO: Exercise 8 - Implement debounced search logic
     // 1. Compare debouncedSearch with current query param 'q'
     // 2. If different, update URL using router.replace
   }, [debouncedSearch, pathname, router, searchParams]);
@@ -38,7 +38,7 @@ export function Navbar({ user }: { user: any }) {
               <div className="bg-green-500 p-1 rounded-full">
                 <ShoppingCart className="w-4 h-4 text-white" />
               </div>
-              {/* TODO: Exercise 8 - Display notification message here */}
+              {/* TODO: Exercise 11 - Display notification message here (use notification state from store) */}
               Placeholder Notification
             </motion.div>
           )}
@@ -73,7 +73,7 @@ export function Navbar({ user }: { user: any }) {
                 exit={{ scale: 0 }}
                 className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-white text-black text-[10px] font-black rounded-full flex items-center justify-center px-1 border-2 border-[#0a0a0a]"
               >
-                {/* TODO: Exercise 4 - Show actual cart count */}
+                {/* TODO: Exercise 5 - Show actual cart count (use totalItems from store) */}
                 {totalItems}
               </motion.span>
             )}

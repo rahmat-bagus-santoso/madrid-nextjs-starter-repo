@@ -33,19 +33,18 @@ export const useCartStore = create<CartState>()(
       notification: null,
       
       setNotification: (message) => {
-        // TODO: Exercise 8 - Implement setNotification logic (set the message)
+        // TODO: Exercise 10 - Implement setNotification logic (set the 'notification' state)
       },
 
       addItem: (product) => {
-        // TODO: Exercise 2 - Implement addItem logic
+        // TODO: Exercise 1 - Implement addItem logic
         // 1. Check if item already exists in items array
         // 2. If exists, increment quantity
         // 3. If new, add to array with quantity 1
-        // TODO: Exercise 8 - Add notification message here later
       },
 
       removeItem: (productId) => {
-        // TODO: Exercise 5 - Implement removeItem logic
+        // TODO: Exercise 7 - Implement removeItem logic
         // 1. Find the item
         // 2. Decrement quantity or remove from array if quantity is 1
       },
@@ -55,12 +54,12 @@ export const useCartStore = create<CartState>()(
       },
 
       totalItems: () => {
-        // TODO: Exercise 4 - Calculate total quantity of items in cart
+        // TODO: Exercise 4 - Calculate total quantity of all items in cart
         return 0;
       },
 
       totalPrice: () => {
-        // TODO: Exercise 4 - Calculate total price (price * quantity) of all items
+        // TODO: Exercise 6 - Calculate total price (price * quantity) of all items
         return 0;
       },
     }),

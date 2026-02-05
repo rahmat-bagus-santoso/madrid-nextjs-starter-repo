@@ -7,7 +7,7 @@ import { Zap, Loader2, AlertCircle } from 'lucide-react';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function ProductsCSRPage() {
-  // TODO: Exercise 7 - Implement client-side fetching with useSWR
+  // TODO: Exercise 9 - Implement client-side fetching with useSWR
   // 1. Define fetcher (already done above)
   // 2. Call useSWR with the URL: 'https://dummyjson.com/products?limit=12'
   // 3. Extract { data, error, isLoading }
