@@ -18,6 +18,7 @@ export function Sidebar() {
 
   const menuItems = [
     { label: 'Products', href: '/exercise-dashboard/root/products', icon: Package },
+    { label: 'Trending (CSR)', href: '/exercise-dashboard/root/products-csr', icon: Box },
     { label: 'Cart', href: '/exercise-dashboard/root/cart', icon: ShoppingCart },
   ];
 

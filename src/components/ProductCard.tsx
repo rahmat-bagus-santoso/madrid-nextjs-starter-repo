@@ -13,12 +13,13 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem);
-  const [isAdded, setIsAdded] = useState(false);
+  
+  // TODO: Exercise 8 - You can add local feedback state here if you want (like isAdded)
 
   const handleAdd = () => {
+    // TODO: Exercise 3 - Call addItem here
+    // TODO: Exercise 8 - Trigger local feedback or global notification
     addItem(product);
-    setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 2000);
   };
 
   return (

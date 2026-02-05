@@ -31,52 +31,38 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
       notification: null,
-      setNotification: (message) => set({ notification: message }),
+      
+      setNotification: (message) => {
+        // TODO: Exercise 8 - Implement setNotification logic (set the message)
+      },
+
       addItem: (product) => {
-        const items = get().items;
-        const existingItem = items.find((item) => item.id === product.id);
-
-        if (existingItem) {
-          set({
-            items: items.map((item) =>
-              item.id === product.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
-            notification: `Increased ${product.title} quantity`,
-          });
-        } else {
-          set({ 
-            items: [...items, { ...product, quantity: 1 }],
-            notification: `Added ${product.title} to cart`,
-          });
-        }
-
-        // Auto hide notification after 3 seconds
-        setTimeout(() => {
-          set({ notification: null });
-        }, 3000);
+        // TODO: Exercise 2 - Implement addItem logic
+        // 1. Check if item already exists in items array
+        // 2. If exists, increment quantity
+        // 3. If new, add to array with quantity 1
+        // TODO: Exercise 8 - Add notification message here later
       },
+
       removeItem: (productId) => {
-        const items = get().items;
-        const existingItem = items.find((item) => item.id === productId);
-
-        if (existingItem && existingItem.quantity > 1) {
-          set({
-            items: items.map((item) =>
-              item.id === productId
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
-          });
-        } else {
-          set({ items: items.filter((item) => item.id !== productId) });
-        }
+        // TODO: Exercise 5 - Implement removeItem logic
+        // 1. Find the item
+        // 2. Decrement quantity or remove from array if quantity is 1
       },
-      clearCart: () => set({ items: [] }),
-      totalItems: () => get().items.reduce((acc, item) => acc + item.quantity, 0),
-      totalPrice: () =>
-        get().items.reduce((acc, item) => acc + item.price * item.quantity, 0),
+
+      clearCart: () => {
+        // TODO: Exercise 2 - Implement clearCart logic (reset items to empty array)
+      },
+
+      totalItems: () => {
+        // TODO: Exercise 4 - Calculate total quantity of items in cart
+        return 0;
+      },
+
+      totalPrice: () => {
+        // TODO: Exercise 4 - Calculate total price (price * quantity) of all items
+        return 0;
+      },
     }),
     {
       name: 'shopping-cart',

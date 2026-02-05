@@ -8,7 +8,9 @@ export function AddToCartButton({ product }: { product: Product }) {
 
   return (
     <button
-      onClick={() => addItem(product)}
+      onClick={() => {
+        // TODO: Exercise 3 - Call addItem from the store
+      }}
       className="w-full bg-white text-black py-4 rounded-xl hover:bg-zinc-200 transition-all font-bold flex items-center justify-center gap-3 shadow-lg shadow-white/5 active:scale-[0.98]"
     >
       <ShoppingCart className="w-5 h-5" />
