@@ -13,6 +13,7 @@ const PROTECTED_ROUTES = {
   // Example: '/dashboard': ['user', 'admin'],
   '/dashboard': ['user', 'admin'],
   '/private': ['admin'],
+  '/exercise-dashboard/root': ['user', 'admin'],
 } as const;
 
 export function proxy(request: NextRequest) {

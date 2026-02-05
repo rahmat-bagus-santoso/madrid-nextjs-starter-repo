@@ -1,6 +1,7 @@
 'use server';
 
-import { login as authLogin, logout as authLogout, UserRole } from '@/lib/auth';
+import { login as authLogin, logout as authLogout } from '@/lib/auth';
+import { UserRole } from '@/lib/auth-types';
 import { redirect } from 'next/navigation';
 
 // TODO AUTH 3: Server Actions for Login/Logout
